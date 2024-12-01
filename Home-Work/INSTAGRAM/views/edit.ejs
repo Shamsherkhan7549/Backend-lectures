@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> edit</title>
+</head>
+<body>
+    
+    <div>
+        <form method="post" action="http://localhost:8080/home/<%= data.id %>?_method=patch">
+            <input type="text" name = "username" value="<%= data.username %>"> <br><br>
+            <input type="text" name = "image"  value="<%= data.image %>"><br><br>
+            <input type="text" name = "caption"  value="<%= data.caption %>"><br><br>
+            <button>submit</button>
+        </form>
+    </div>
+</body>
+</html>

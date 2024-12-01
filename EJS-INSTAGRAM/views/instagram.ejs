@@ -1,0 +1,19 @@
+<%- include('includes/head.ejs') %>
+<body>
+
+    <h1>Username: @<%= username %></h1>
+    <button>follow</button> &nbsp;&nbsp;&nbsp; <button>Message</button>
+
+    <p>followers:  <%= currData.followers %>  &nbsp;&nbsp;&nbsp;&nbsp; following: <%= currData.following %>  </p>
+    <hr/>
+
+    <% for(post of currData.posts) { %>
+            <img src="<%=post.image%>" alt="">
+            <p>Likes: <%= post.likes  %>  &nbsp;&nbsp;&nbsp;&nbsp; Comments: <%= post.comments  %> </p>
+    <% } %>
+
+    <%- include('includes/footer.ejs') %>
+    
+    <script src="/script.js"></script>
+</body>
+</html>

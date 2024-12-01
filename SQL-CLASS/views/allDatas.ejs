@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Datas</title>
+</head>
+<body>
+    <h1>All Datas</h1>
+    <a href="http://localhost:8080/users/newUser">Add new user</a> <br><br>
+
+    <form action="http://localhost:8080/search" method="get">
+            <input type="text" placeholder="enter username" name="username"> <button>submit</button>
+    </form>
+
+    <br><br>
+
+    
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+
+        <% users.map(user => {%>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.username %></td>
+                <td><%= user.email %></td>
+                <td><a href="/users/<%= user.id %>/edit" >edit</a></td>
+                <td>
+                    <form action="/users/<%= user.id %>/delete/?_method=DELETE" method="post">
+                        <button>delete</button>
+                    </form>
+                </td>
+            </tr>
+       <% }) %>
+      
+    </table>
+
+    
+    
+</body>
+</html>
