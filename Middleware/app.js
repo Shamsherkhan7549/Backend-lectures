@@ -52,21 +52,37 @@ app.get('/random/list', (req, res)=>{
     res.send("hey this is random-list page")
 });
 
-app.use('/api', (req, res,next)=>{
+// app.use('/api', (req, res,next)=>{
+//     console.log('api middleware');
+//     const {q} = req.query;
+//     if(q === "giveaccess"){
+//         next();
+//     };
+//     res.send("ACCESS DENIED!");
+
+    
+// });
+
+const checktoken =  (req, res,next) =>{
     console.log('api middleware');
     const {q} = req.query;
     if(q === "giveaccess"){
-        next();
+        return next();
     };
-    res.send("ACCESS DENIED!");
 
-    
-})
+    throw new Error("ACCESS DENIED!");  
+};
 
-app.get('/api', (req, res)=>{
+
+app.get('/api',checktoken, (req, res)=>{
     console.log('api accessed')
-    res.send("api accessed")
+    res.send("api accessed");
 });
+
+// Error
+// app.get('/wrong', (req, res)=>{
+//     abcd = abcd
+// });
 
 app.use((req, res)=>{
     res.status(404).send("page is not found");
