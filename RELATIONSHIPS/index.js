@@ -22,9 +22,9 @@ main().then(()=>{
 
 //one to many //implementaion
 //Store a reference to th echild document inside parent 
-// async function main(){
-//     mongoose.connect('mongodb://127.0.0.1:27017/zomato');
-// };
+async function main(){
+    mongoose.connect('mongodb://127.0.0.1:27017/zomato');
+};
 
  const insertOrders = async() => {
     const orders = await ORDER.insertMany([{name:"laddu", price:7},{name:"rosogulla", price:15}]);
@@ -33,9 +33,9 @@ main().then(()=>{
 // insertOrders();
 
 const insertCustomer = async() =>{
-    // const customer1 = new CUSTOMER({username:'@sameer'});
+    const customer1 = new CUSTOMER({username:'@sameer'});
 
-    const customer1 = await CUSTOMER.findOne({username:'@raj'});
+    // const customer1 = await CUSTOMER.findOne({username:'@raj'});
     const order1 = await ORDER.findOne({name:"laddu"});
     const order2 = await ORDER.findOne({name: "rosogulla"});
 
@@ -48,15 +48,27 @@ const insertCustomer = async() =>{
 // insertCustomer();
 
 const showCustomers = async() =>{
-    const customers = await CUSTOMER.find().populate('orders');
-    console.log(customers[2])
+    const customers = await CUSTOMER.findOne({username:'@sameer'}).populate('orders');
+    console.log(customers)
 };
 // showCustomers();
 
-// one to squillion relationships
-async function main(){
-    mongoose.connect('mongodb://127.0.0.1:27017/hola')
+const showOrders = async() =>{
+    const orders = await ORDER.find({});
+    console.log(orders)
 };
+// showOrders();
+
+const deleteCustomer = async() => {
+    const customers = await CUSTOMER.findByIdAndDelete('677963378775803cccd21124');
+    console.log('deletedCustomer= ', customers);
+};
+deleteCustomer();
+
+// one to squillion relationships
+// async function main(){
+//     mongoose.connect('mongodb://127.0.0.1:27017/hola')
+// };
 
 // const insertUser = async() => {
 //     const user1 = new USER({username:'@rehan'});
@@ -80,6 +92,7 @@ const insertPost = async() => {
     console.log("resultPost= ", resultPost)
 };
 // insertPost();
+
 
 const deleteUser = async() => {
     const deletedUser = await POST.deleteMany({});
