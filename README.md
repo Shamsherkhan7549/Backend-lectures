@@ -1,4 +1,4 @@
-# Backend and Frontend Development Guide
+# Backend Development Guide
 
 ## Table of Contents
  Introduction to Node.js
